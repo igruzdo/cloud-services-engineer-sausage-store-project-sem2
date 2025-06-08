@@ -22,7 +22,7 @@ spec:
             - configMapRef:
                 name: mongodb-conf
           ports:
-            - containerPort: { { .Values.mongodb.containerPort } }
+            - containerPort: {{ .Values.mongodb.containerPort }}
           resources:
             requests:
               memory: "128Mi"
@@ -50,8 +50,8 @@ metadata:
     app: mongodb
 spec:
   ports:
-    - port: { { .Values.mongodb.containerPort } }
-      targetPort: { { .Values.mongodb.containerPort } }
+    - port: {{ .Values.mongodb.containerPort }}
+      targetPort: {{ .Values.mongodb.containerPort }}
   selector:
     app: mongodb
   clusterIP: None
@@ -62,7 +62,7 @@ metadata:
   name: mongodb-conf
 data:
   MONGO_INITDB_ROOT_USERNAME:
-    { { .Values.mongodb.env.MONGO_INITDB_ROOT_USERNAME } }
+    {{ .Values.mongodb.env.MONGO_INITDB_ROOT_USERNAME }}
   MONGO_INITDB_ROOT_PASSWORD:
-    { { .Values.mongodb.env.MONGO_INITDB_ROOT_PASSWORD } }
-  MONGO_INITDB_DATABASE: { { .Values.mongodb.env.MONGO_INITDB_DATABASE } }
+    {{ .Values.mongodb.env.MONGO_INITDB_ROOT_PASSWORD }}
+  MONGO_INITDB_DATABASE: {{ .Values.mongodb.env.MONGO_INITDB_DATABASE }}
